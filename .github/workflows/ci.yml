@@ -1,0 +1,18 @@
+name: rtos-study  # 워크플로우 이름
+
+on:  # 언제 실행할지
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:  # 실행할 작업들
+  build:
+    runs-on: ubuntu-latest  # 실행 환경
+    
+    steps:  # 단계별 작업
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+      
+      - name: 빌드 테스트
+        run: echo "Hello World"
