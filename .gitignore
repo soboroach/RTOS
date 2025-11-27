@@ -50,3 +50,18 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Build folders
+Debug/
+Release/
+
+# CubeIDE settings
+*.launch
+
+# CubeMX backup
+*.ioc.bak
+
+# Binary outputs (이미 있지만 확실히)
+*.bin
+*.srec
+
