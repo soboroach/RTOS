@@ -65,3 +65,5 @@ Release/
 *.bin
 *.srec
 
+# build 파일
+build/

@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "SEGGER_RTT.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -64,6 +64,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+	//JLinkRTTViewer
 
   /* USER CODE END 1 */
 
@@ -80,12 +81,11 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   /* USER CODE BEGIN 2 */
-
+  SEGGER_RTT_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -95,6 +95,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  SEGGER_RTT_printf(0, "Hello RTT!\n");
+	  HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
