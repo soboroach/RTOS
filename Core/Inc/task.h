@@ -3,29 +3,34 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
 
 /*---------------------------------------------------------------------------
  * 설정
  *---------------------------------------------------------------------------*/
-#define MAX_TASKS              16
-#define NUM_PRIORITY_LEVELS    8     // 우선순위 0~7
-#define LOWEST_PRIORITY        (NUM_PRIORITY_LEVELS - 1)
-#define HIGHEST_PRIORITY       0
-#define MAX_TASK_NAME_LEN 	   16
+#define MAX_TASKS 16
+#define NUM_PRIORITY_LEVELS 8 // 우선순위 0~7
+#define LOWEST_PRIORITY (NUM_PRIORITY_LEVELS - 1)
+#define HIGHEST_PRIORITY 0
+#define MAX_TASK_NAME_LEN 16
 /*---------------------------------------------------------------------------
  * 타입 정의
  *---------------------------------------------------------------------------*/
 typedef void (*TaskFunction_t)(void *params);
 
-typedef enum {
-	TASK_STATE_READY,
-	TASK_STATE_RUNNING,
-	TASK_STATE_BLOCKED,
-	TASK_STATE_SUSPENDED,
-	TASK_STATE_TERMINATED
+typedef enum
+{
+    TASK_STATE_READY,
+    TASK_STATE_RUNNING,
+    TASK_STATE_BLOCKED,
+    TASK_STATE_SUSPENDED,
+    TASK_STATE_TERMINATED
 } TaskState_t;
 
-typedef struct TCB {
+typedef struct TCB
+{
     uint32_t *stackPointer;
     uint32_t *stackBase;
     uint32_t stackSize;
@@ -40,8 +45,8 @@ typedef struct TCB {
     uint32_t wakeupTime;
 
     // 라운드 로빈용 추가 필드
-    uint32_t timeSlice;        // 할당된 타임 퀀텀
-    uint32_t remainingTime;    // 현재 남은 실행 시간
+    uint32_t timeSlice;     // 할당된 타임 퀀텀
+    uint32_t remainingTime; // 현재 남은 실행 시간
 
     TaskFunction_t taskFunc;
     void *params;
@@ -54,8 +59,8 @@ typedef struct TCB {
  *---------------------------------------------------------------------------*/
 
 // 태스크 생성/삭제
-TCB_t* Task_Create(TaskFunction_t func, const char *name, uint32_t stackSize,
-        void *params, uint8_t priority, uint32_t timeSlice);
+TCB_t *Task_Create(TaskFunction_t func, const char *name, uint32_t stackSize,
+                   void *params, uint8_t priority, uint32_t timeSlice);
 void Task_Delete(TCB_t *task);
 
 // 태스크 제어
@@ -70,10 +75,7 @@ void Task_SetPriority(TCB_t *task, uint8_t newPriority);
 uint8_t Task_GetPriority(TCB_t *task);
 
 // 정보 조회
-TCB_t* Task_GetCurrent(void);
+TCB_t *Task_GetCurrent(void);
 TaskState_t Task_GetState(TCB_t *task);
-
-
-
 
 #endif /* TASK_H */
