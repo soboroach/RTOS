@@ -67,3 +67,5 @@ Release/
 
 # build 파일
 build/
+.metadata/
+
