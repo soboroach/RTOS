@@ -67,3 +67,6 @@ Release/
 
 # build 파일
 build/
+.vscode/
+.idea/
+*.log

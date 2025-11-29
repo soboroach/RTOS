@@ -54,8 +54,9 @@ typedef struct TCB {
  *---------------------------------------------------------------------------*/
 
 // 태스크 생성/삭제
-TCB_t* Task_Create(TaskFunction_t func, const char *name, uint32_t stackSize,
-        void *params, uint8_t priority, uint32_t timeSlice);
+void Task_CreateStatic(TCB_t *tcb, uint32_t *stack, uint32_t stackSize,
+                       TaskFunction_t func, const char *name,
+                       void *params, uint8_t priority, uint32_t timeSlice);
 void Task_Delete(TCB_t *task);
 
 // 태스크 제어
@@ -64,6 +65,7 @@ void Task_Resume(TCB_t *task);
 void Task_Yield(void);
 void Task_Delay(uint32_t ticks);
 void Task_DelayUntil(uint32_t *prevWakeTime, uint32_t period);
+void Task_TickHandler(void);
 
 // 우선순위
 void Task_SetPriority(TCB_t *task, uint8_t newPriority);
