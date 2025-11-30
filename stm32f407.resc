@@ -1,0 +1,13 @@
+using sysbus
+
+mach create
+machine LoadPlatformDescription @platforms/boards/stm32f4_discovery.repl
+sysbus LoadELF @/home/user/teamproject/RTOS/Debug/RTOS.elf
+showAnalyzer sysbus.usart2
+
+# GDB 서버 시작
+machine StartGdbServer 3333
+
+# start 후에 pause 해야 함
+start
+pause
