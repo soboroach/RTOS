@@ -8,6 +8,7 @@
 #include "task.h"
 
 #include <stddef.h>      // NULL 정의
+#include <stdint.h>
 #include <string.h>      // strncpy 정의
 #include "stm32f4xx.h"
 
