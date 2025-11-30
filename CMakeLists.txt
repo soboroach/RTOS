@@ -106,4 +106,6 @@ add_executable(RTOS
         Core/Inc/task.h
         Core/Inc/scheduler.h
         Core/Src/task.c
-        Core/Src/scheduler.c)
+        Core/Src/scheduler.c
+        Core/Inc/semaphore.h
+        Core/Src/semaphore.c)
